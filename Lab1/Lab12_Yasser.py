@@ -3,6 +3,9 @@
 # import packages
 from sklearn import datasets
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 import pandas as pd
 import streamlit as st
 
@@ -12,9 +15,25 @@ print(iris.data)
 print(iris.target)
 print(iris.target_names)
 # Step2 : Model
-model = RandomForestClassifier()
+#model = RandomForestClassifier()
+
+algorithm_choice = st.sidebar.selectbox("Choose Classification Algorithm", ("Random Forest", "Support Vector Machine (SVM)", "Logistic Regression", "K-Nearest Neighbors (KNN)"))
+
+if algorithm_choice == "Random Forest":
+    model = RandomForestClassifier()
+elif algorithm_choice == "Support Vector Machine (SVM)":
+    model = SVC()
+elif algorithm_choice == "Logistic Regression":
+    model = LogisticRegression()
+elif algorithm_choice == "K-Nearest Neighbors (KNN)":
+    model = KNeighborsClassifier()
+else:
+    st.error("Invalid algorithm choice")
+
+
 # Step3 : Train
 model.fit(iris.data,iris.target)
+
 # Step4 : Test
 prediction = model.predict([[5.9,3. ,5.1,1.8]])
 
@@ -41,8 +60,12 @@ st.subheader('iris flower prediction')
 prediction = model.predict(df)
 st.write(iris.target_names[prediction])
 
-#st.image('irisDataset.png')
+st.image('irisDataset.png')
+st.image(f'{iris.target_names[prediction][0]}.jpeg', caption=iris.target_names[prediction][0])
+
+
 #st.write(iris.data)
 
 #st.write(iris.target_names[prediction])
-
+#amelioration 2 : to show algos and for the user to switch in between them
+#amelioration 3: metrics of algorithmics to show better algos
