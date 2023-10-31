@@ -8,8 +8,9 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import seaborn as sns
 #Step 1 : Datasets
+dt = pd.read_csv('Datasets/leon.csv')
+#dt = pd.read_csv('Datasets/train.csv')
 #Feature engineering
-dt = pd.read_csv('Datasets/train.csv')
 print(dt.head())
 print(dt.info())
 print(dt.isna().sum())
@@ -107,6 +108,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=3)
+dt_encoded.to_csv("leon.csv")
 #Step 2: Model
 model=LogisticRegression()
 model.fit(x_train,y_train)
