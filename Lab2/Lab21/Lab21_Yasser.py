@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import seaborn as sns
 #Step 1 : Datasets
-dt = pd.read_csv('Datasets/leon.csv')
+dt = pd.read_csv('../Datasets/leon.csv')
 #dt = pd.read_csv('Datasets/train.csv')
 #Feature engineering
 print(dt.head())
